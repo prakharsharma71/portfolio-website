@@ -1,0 +1,62 @@
+# Prakhar Sharma Portfolio Content
+# Source: decoded content from "Prakhar Sharma.pdf" because no separate portfolio-content.txt was present.
+
+[profile]
+name=Prakhar Sharma
+headline=Web Developer | SEO Strategist | AI Solutions Builder
+email=sprakhar209@gmail.com
+phone=9152975057
+location=Remote
+linkedin=https://www.linkedin.com/in/prakhar-sharma-94994821b
+github=https://github.com/prakharsharma71
+instagram=https://www.instagram.com/prakhar_reborn
+facebook=https://www.facebook.com
+availability=Available for premium website, SEO and AI builds
+
+[summary]
+Hi, I'm Prakhar Sharma, a Web Developer, SEO Strategist and AI Solutions Builder. I help businesses build high-performance websites, optimize their online presence and create scalable digital experiences. My expertise includes Shopify Development, WordPress Development, Custom Web Applications, SEO, UI/UX Design, AI-powered workflows and website optimization.
+
+[education]
+Dr. A.P.J. Abdul Kalam Technical University|Bachelor of Technology (B.Tech) - Computer Science Engineering|2024
+
+[experience]
+Remote Web Developer|Remote|2025 - Present|Working as a Remote Web Developer; Freelancing since 2025; Experience in Shopify, WordPress and Custom Development; Experience in SEO, Website Optimization and AI Tools; Successfully delivered multiple paid client projects
+
+[projects]
+Lifestyle by Vivcos|E-Commerce|WordPress, Custom Development|Designed and developed a complete lifestyle e-commerce website focused on premium shopping experience, mobile responsiveness and conversion optimization.|Featured Build|
+Vivansh Vasishta|Portfolio Website|WordPress|Customized and developed the complete portfolio website with a focus on personal branding, user experience and performance.|Brand System|
+Paaie|Fashion & Jewelry E-Commerce|Shopify|Working as Shopify Developer responsible for website maintenance, feature implementation, performance improvements and store optimization.|Shopify Ops|
+Aadiras|E-Commerce|Shopify|Managing store maintenance, SEO implementation and frontend enhancements.|Growth Retainer|
+Volvein|E-Commerce|WordPress, Custom Development|Designed and developed the complete website with focus on responsiveness, branding and user experience.|Custom Build|
+Learnlith|Education|React.js, Node.js|Recovered and rebuilt critical website functionality while maintaining and improving the platform.|Recovery Build|
+Vivcos|Portfolio Website|WordPress|Designed, developed and maintained the complete company website.|Company Site|
+Deepak Sharma Portfolio|Portfolio Website|HTML, Tailwind CSS, JavaScript|Developed a fully custom-coded portfolio website with SEO optimization, sitemap generation, robots.txt setup and responsive design.|Custom Portfolio|
+RKK Masale|Food Business|HTML, Tailwind CSS, JavaScript, Firebase|Designed and developed a static business website with strong SEO implementation and deployment.|Local SEO|
+Canadian E-Commerce Project|E-Commerce|Shopify|Designed and developed a complete Shopify store for an international client.|International Store|
+Smart City Traveller|Travel Technology|HTML, CSS, JavaScript, PHP, MySQL|Built a travel planning web application with route optimization, maps integration and personalized recommendations.|Web App|
+Netflix Finest Five|Entertainment|React.js|Built a responsive React application that curates top Netflix content and redirects users to watch selected content.|React App|
+
+[services]
+Development|Shopify Development; WordPress Development; Custom Website Development; Static Website Development; Dynamic Web Applications; Portfolio Websites; Landing Pages; E-Commerce Websites; Website Redesign
+SEO|Technical SEO; On-Page SEO; Sitemap Optimization; Robots.txt Configuration; Content Optimization; Search Console Setup
+Design|UI/UX Design; Website Redesign; Brand Presentation; Canva Design
+AI Services|AI Automation; AI Chatbots; AI Content Creation; AI Video Creation; AI Assisted Development; Vibe Coding
+Maintenance|Website Maintenance; Hosting Migration; Email Migration; Website Optimization; Server Management
+
+[skills]
+Frontend|HTML5; CSS3; JavaScript; Tailwind CSS; React.js
+Backend & Data|PHP; Node.js; MySQL; MongoDB; Firebase
+CMS & Commerce|Shopify; WordPress
+SEO & Growth|Technical SEO; On-Page SEO; Sitemap Optimization; Robots.txt Configuration; Content Optimization; Search Console Setup
+AI Toolkit|ChatGPT; Claude; Gemini; Google Veo; PixVerse; AI Automation; AI Chatbots; AI Content Creation; AI Video Creation; AI Assisted Development; Vibe Coding
+Creative & Delivery|GitHub; Canva; UI/UX Design; Brand Presentation; Website Maintenance; Hosting Migration; Email Migration; Website Optimization; Server Management
+
+[industries]
+E-Commerce
+Fashion & Jewelry
+Education
+Portfolio Websites
+Food Business
+Travel Technology
+Entertainment
+Local Businesses
