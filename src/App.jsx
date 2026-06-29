@@ -4,12 +4,10 @@ import {
   ArrowRight,
   ArrowUpRight,
   Bot,
-  BriefcaseBusiness,
   Check,
   Code2,
   ExternalLink,
   Github,
-  Globe2,
   Layers3,
   Linkedin,
   Mail,
@@ -19,7 +17,6 @@ import {
   Phone,
   Search,
   ServerCog,
-  ShoppingBag,
   Sparkles,
   X,
   Zap,
@@ -581,9 +578,9 @@ const caseStudyDetails = {
 const projectShowcaseDetails = {
   'Lifestyle by Vivcos': {
     screenshotFile: 'lifestyle-vivcos-home.png',
-    visitUrl: 'https://lifestyle.vivcos.com',
+    liveUrl: 'https://lifestyle.vivcos.com/',
     description:
-      'Premium lifestyle e-commerce website built for smooth browsing, mobile shopping and conversion-focused product discovery.',
+      'Premium lifestyle e-commerce website built for smooth browsing and conversion-focused product discovery.',
   },
   'Vivansh Vasishta': {
     screenshotFile: 'vivansh-portfolio-home.png',
@@ -635,10 +632,14 @@ const getCaseStudy = (project) => {
   const details = caseStudyDetails[project.name] || {};
   const showcase = projectShowcaseDetails[project.name] || {};
   const platform = details.platform || project.tech;
+  const image = showcase.screenshotFile ? getProjectScreenshot(showcase.screenshotFile) : '';
+  const liveUrl = showcase.liveUrl || showcase.visitUrl || project.url || '';
   return {
     ...project,
     ...details,
     ...showcase,
+    title: showcase.title || project.name,
+    industry: showcase.industry || project.industry,
     platform,
     description: showcase.description || details.description || details.overview || project.role,
     overview: details.overview || project.role,
@@ -646,100 +647,39 @@ const getCaseStudy = (project) => {
     deliverables: details.deliverables || ['Responsive Experience', 'Performance Pass', 'SEO Ready Structure', 'Deployment Support'],
     proofPoints: details.proofPoints || ['Business-ready delivery', 'Clean user experience', 'Launch support'],
     stack: details.technologies || project.stack,
-    screenshot: showcase.screenshotFile ? getProjectScreenshot(showcase.screenshotFile) : '',
-    visitUrl: showcase.visitUrl || project.url || '',
+    image,
+    screenshot: image,
+    liveUrl,
+    visitUrl: liveUrl,
   };
 };
 
-function ProjectVisual({ caseStudy, index }) {
-  const [from, to] = accentPairs[index % accentPairs.length];
-
-  if (caseStudy.screenshot) {
-    return (
-      <motion.div className="relative h-full min-h-[360px] overflow-hidden rounded-[1.75rem] bg-white sm:min-h-[460px]" whileHover="hover">
-        <motion.img
-          src={caseStudy.screenshot}
-          alt={`${caseStudy.name} project screenshot`}
-          className="h-full w-full object-cover"
-          loading="lazy"
-          decoding="async"
-          variants={{ hover: { scale: 1.045 } }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        />
-      </motion.div>
-    );
-  }
-
-  return (
-    <motion.div
-      className="relative h-full min-h-[360px] overflow-hidden rounded-[1.75rem] border border-white/80 bg-white p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] sm:min-h-[460px] sm:p-7"
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${from}16, #fffaf3 44%, ${to}18)` }} />
-      <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full blur-3xl" style={{ background: `${from}22` }} />
-      <div className="absolute -bottom-28 left-8 h-72 w-72 rounded-full blur-3xl" style={{ background: `${to}20` }} />
-      <div className="relative z-10 flex h-full flex-col justify-between">
-        <div>
-          <div className="mb-7 flex flex-wrap items-center gap-2">
-            <span className="rounded-full border border-ink/8 bg-white/70 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-ink/50">
-              Case study
-            </span>
-            <span className="rounded-full bg-ink px-3 py-1.5 text-xs font-semibold text-white">{caseStudy.status}</span>
-          </div>
-          <p className="max-w-xs font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl">{caseStudy.name}</p>
-          <div className="mt-6 grid max-w-md gap-3 sm:grid-cols-2">
-            <div className="rounded-2xl border border-white/80 bg-white/62 p-4 backdrop-blur-xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/40">Industry</p>
-              <p className="mt-2 font-semibold text-ink">{caseStudy.industry}</p>
-            </div>
-            <div className="rounded-2xl border border-white/80 bg-white/62 p-4 backdrop-blur-xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/40">Platform</p>
-              <p className="mt-2 font-semibold text-ink">{caseStudy.platform}</p>
-            </div>
-          </div>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-3">
-          {caseStudy.proofPoints.map((point) => (
-            <div key={point} className="rounded-2xl border border-white/80 bg-white/70 p-4 backdrop-blur-xl">
-              <Check className="mb-3 h-4 w-4 text-violet" aria-hidden="true" />
-              <p className="text-sm font-semibold leading-5 text-ink">{point}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-function ProjectScreenshot({ project, index }) {
-  const [from, to] = accentPairs[index % accentPairs.length];
-
-  if (project.screenshot) {
+function ProjectScreenshot({ project }) {
+  if (project.image) {
     return (
       <motion.img
-        src={project.screenshot}
-        alt={`${project.name} homepage screenshot`}
-        className="absolute inset-0 h-full w-full object-cover"
+        src={project.image}
+        alt={`${project.title} homepage screenshot`}
+        className="h-full w-full object-cover"
         loading="lazy"
         decoding="async"
         variants={{ hover: { scale: 1.06 } }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
       />
     );
   }
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${from}55, #fff8ee 45%, ${to}4d)` }} />
-      <div className="absolute -left-24 top-16 h-80 w-80 rounded-full bg-white/45 blur-3xl" />
-      <div className="absolute -right-20 bottom-8 h-96 w-96 rounded-full blur-3xl" style={{ background: `${to}32` }} />
-      <div className="absolute inset-6 rounded-[1.6rem] border border-white/50 bg-white/22 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] backdrop-blur-sm" />
-      <div className="absolute inset-0 grid place-items-center p-8 text-center">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-ink/42">Homepage visual</p>
-          <p className="mx-auto mt-5 max-w-sm font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl">{project.name}</p>
-        </div>
+    <div className="grid h-full w-full place-items-center border-b border-ink/6 bg-mist px-6 text-center">
+      <div>
+        <p className="mx-auto grid h-14 w-14 place-items-center rounded-2xl border border-ink/8 bg-white text-sm font-bold text-ink/58 shadow-[0_14px_34px_rgba(23,21,31,0.06)]">
+          {project.title
+            .split(' ')
+            .slice(0, 2)
+            .map((word) => word[0])
+            .join('')}
+        </p>
+        <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-ink/34">Project screenshot</p>
       </div>
     </div>
   );
@@ -749,58 +689,58 @@ function ProjectCard({ project, index, onViewCaseStudy }) {
   return (
     <motion.article
       data-carousel-card="true"
-      className="group relative h-[520px] w-[82vw] shrink-0 snap-center overflow-hidden rounded-[2rem] border border-white/75 bg-white shadow-[0_30px_90px_rgba(23,21,31,0.16)] sm:h-[600px] sm:w-[70vw] lg:h-[660px] lg:w-[46rem] xl:w-[50rem]"
-      initial={{ opacity: 0, y: 42, scale: 0.96 }}
+      className="group flex h-[460px] min-w-0 shrink-0 basis-full snap-start flex-col overflow-hidden rounded-[1.55rem] border border-white/80 bg-white/82 shadow-[0_20px_60px_rgba(23,21,31,0.10)] backdrop-blur-xl md:basis-[calc((100%_-_1.5rem)/2)] xl:h-[480px] xl:basis-[calc((100%_-_4.5rem)/4)]"
+      initial={{ opacity: 0, y: 32, scale: 0.98 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: '-100px' }}
       whileHover="hover"
       transition={{ duration: 0.65, delay: Math.min(index * 0.04, 0.18), ease: [0.22, 1, 0.36, 1] }}
     >
-      <ProjectScreenshot project={project} index={index} />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(23,21,31,0.2)_34%,rgba(23,21,31,0.88)_100%)]" />
-      <div className="absolute inset-0 bg-gradient-to-br from-white/12 via-transparent to-black/20 opacity-80" />
-      <div className="relative z-10 flex h-full flex-col justify-end p-5 text-white sm:p-7 lg:p-8">
-        <div className="mb-4 flex flex-wrap gap-2">
-          <span className="rounded-full border border-white/18 bg-white/18 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white/86 backdrop-blur-xl">
+      <div className="h-[220px] shrink-0 overflow-hidden rounded-t-[1.55rem] bg-mist">
+        <ProjectScreenshot project={project} />
+      </div>
+      <div className="flex flex-1 flex-col p-4">
+        <div className="mb-3 flex flex-wrap gap-2">
+          <span className="rounded-full bg-violet/10 px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-violet">
             {project.industry}
           </span>
-          <span className="rounded-full border border-white/18 bg-white/18 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white/86 backdrop-blur-xl">
+          <span className="max-w-full rounded-full bg-ocean/10 px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-ocean">
             {project.platform}
           </span>
         </div>
-        <h3 className="max-w-2xl font-display text-3xl font-semibold leading-tight sm:text-5xl">{project.name}</h3>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-white/74 sm:text-base">{project.description}</p>
-        <div className="mt-6 flex flex-wrap gap-3">
+        <h3 className="font-display text-xl font-semibold leading-tight text-ink">{project.title}</h3>
+        <p className="mt-3 text-sm leading-6 text-ink/62">{project.description}</p>
+        <div className="mt-auto grid grid-cols-2 gap-2 pt-5">
           <motion.button
             type="button"
             onClick={onViewCaseStudy}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink shadow-[0_18px_45px_rgba(0,0,0,0.22)] transition hover:bg-mist focus:outline-none focus:ring-2 focus:ring-white/70"
+            className="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full bg-ink px-3 py-2 text-xs font-semibold text-white shadow-[0_14px_32px_rgba(23,21,31,0.16)] transition hover:bg-violet focus:outline-none focus:ring-2 focus:ring-violet/30"
           >
             <span>View Case Study</span>
-            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
           </motion.button>
-          {project.visitUrl ? (
+          {project.liveUrl ? (
             <motion.a
-              href={project.visitUrl}
+              href={project.liveUrl}
               target="_blank"
               rel="noreferrer"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/22 bg-white/12 px-5 py-3 text-sm font-semibold text-white backdrop-blur-xl transition hover:bg-white/18 focus:outline-none focus:ring-2 focus:ring-white/70"
+              className="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full border border-ink/8 bg-white px-3 py-2 text-xs font-semibold text-ink shadow-[0_10px_26px_rgba(23,21,31,0.06)] transition hover:border-violet/25 hover:text-violet focus:outline-none focus:ring-2 focus:ring-violet/20"
             >
               <span>Visit Website</span>
-              <ExternalLink className="h-4 w-4" aria-hidden="true" />
+              <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
             </motion.a>
           ) : (
             <button
               type="button"
               disabled
-              className="inline-flex min-h-12 cursor-not-allowed items-center justify-center gap-2 rounded-full border border-white/16 bg-white/8 px-5 py-3 text-sm font-semibold text-white/46 backdrop-blur-xl"
+              className="inline-flex min-h-10 cursor-not-allowed items-center justify-center gap-1.5 rounded-full border border-ink/8 bg-ink/[0.04] px-3 py-2 text-xs font-semibold text-ink/36"
             >
               <span>Visit Website</span>
-              <ExternalLink className="h-4 w-4" aria-hidden="true" />
+              <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
             </button>
           )}
         </div>
@@ -934,11 +874,10 @@ function ProjectsSection({ projects }) {
     const node = carouselRef.current;
     if (!node) return;
     const cards = Array.from(node.querySelectorAll('[data-carousel-card="true"]'));
-    const center = node.scrollLeft + node.clientWidth / 2;
+    const left = node.scrollLeft;
     const nextIndex = cards.reduce(
       (closest, card, index) => {
-        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-        const distance = Math.abs(center - cardCenter);
+        const distance = Math.abs(left - card.offsetLeft);
         return distance < closest.distance ? { index, distance } : closest;
       },
       { index: 0, distance: Number.POSITIVE_INFINITY },
@@ -956,7 +895,7 @@ function ProjectsSection({ projects }) {
     if (!node) return;
     const cards = Array.from(node.querySelectorAll('[data-carousel-card="true"]'));
     const nextIndex = Math.min(Math.max(index, 0), cards.length - 1);
-    cards[nextIndex]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    cards[nextIndex]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
     setActiveIndex(nextIndex);
   };
 
@@ -989,7 +928,7 @@ function ProjectsSection({ projects }) {
     setActiveIndex(0);
     requestAnimationFrame(() => {
       const firstCard = carouselRef.current?.querySelector('[data-carousel-card="true"]');
-      firstCard?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      firstCard?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
     });
   }, [active, visibleProjects.length]);
 
@@ -1002,11 +941,11 @@ function ProjectsSection({ projects }) {
 
   return (
     <section id="projects" className="px-4 py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[90rem]">
         <SectionHeading
           eyebrow="Projects / Case Studies"
           title="Visual proof, built for real businesses."
-          copy="A swipeable row of homepage-led projects with the deeper scope kept behind focused case studies."
+          copy="Homepage-led project stories with sharp first impressions and focused case-study depth one click away."
         />
         <motion.div
           variants={fadeUp}
@@ -1072,13 +1011,13 @@ function ProjectsSection({ projects }) {
         </div>
       </div>
 
-      <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-mist to-transparent sm:w-24" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-mist to-transparent sm:w-24" />
+      <div className="relative mx-auto max-w-[90rem] overflow-hidden">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-mist to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-mist to-transparent" />
         <motion.div
           ref={carouselRef}
           className={cn(
-            'no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-[max(1rem,calc((100vw-80rem)/2))] pb-8 pt-2 sm:gap-6 lg:gap-8',
+            'no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-8 pt-2',
             isDragging ? 'cursor-grabbing select-none' : 'cursor-grab',
           )}
           onScroll={handleScroll}
@@ -1094,7 +1033,7 @@ function ProjectsSection({ projects }) {
         </motion.div>
       </div>
 
-      <div className="mx-auto mt-2 flex max-w-7xl items-center gap-4 px-4">
+      <div className="mx-auto mt-2 flex max-w-[90rem] items-center gap-4">
         <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-ink/8">
           <motion.div
             className="h-full rounded-full bg-gradient-to-r from-violet via-ocean to-ember"
