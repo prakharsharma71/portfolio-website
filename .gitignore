@@ -148,3 +148,8 @@ vite.config.ts.timestamp-*
 .vite/
 >>>>>>> 488a1a57f6d805017146e99df003c02100d24d01
 node_modules
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
