@@ -440,7 +440,7 @@ function TrustSection({ projects, skillGroups, industries }) {
   );
 }
 
-const screenshotModules = import.meta.glob('./assets/project-screenshots/*.{png,jpg,jpeg,webp}', {
+const screenshotModules = import.meta.glob('./assets/project-screenshots/*.{png,PNG,jpg,jpeg,webp}', {
   eager: true,
   query: '?url',
   import: 'default',
@@ -577,37 +577,48 @@ const caseStudyDetails = {
 
 const projectShowcaseDetails = {
   'Lifestyle by Vivcos': {
-    screenshotFile: 'lifestyle-vivcos-home.png',
+    screenshotFile: 'lifestyle.PNG',
+    imagePosition: 'left top',
     liveUrl: 'https://lifestyle.vivcos.com/',
     description:
       'Premium lifestyle e-commerce website built for smooth browsing and conversion-focused product discovery.',
   },
   'Vivansh Vasishta': {
-    screenshotFile: 'vivansh-portfolio-home.png',
+    screenshotFile: 'image2.PNG',
+    liveUrl: 'https://vivanshvasishta.com/',
+    imagePosition: 'left top',
     description: 'Executive portfolio website shaped around personal branding, authority and high-trust inquiry flow.',
   },
   Paaie: {
-    screenshotFile: 'paaie-home.png',
+    screenshotFile: 'image3.PNG',
+    liveUrl: 'https://paaie.com/',
+    imagePosition: 'left top',
     description: 'Fashion and jewelry Shopify storefront improved for cleaner shopping, merchandising and store performance.',
   },
   Aadiras: {
-    screenshotFile: 'aadiras-home.png',
+    screenshotFile: 'image4.PNG',
+    liveUrl: 'https://aadiras.com/',
+    imagePosition: 'left top',
     description: 'Wellness commerce storefront maintained and refined for search visibility, product discovery and mobile buyers.',
   },
   Volvein: {
-    screenshotFile: 'volvein-home.png',
+    screenshotFile: 'image5.PNG',
+    liveUrl: 'https://volvein.com/',
     description: 'Premium e-commerce brand experience built around elevated visuals, responsive browsing and launch readiness.',
   },
   Learnlith: {
-    screenshotFile: 'learnlith-home.png',
+    screenshotFile: 'image6.PNG',
+    liveUrl: 'https://learnlith.com/',
     description: 'Education platform recovery and rebuild focused on reliability, clearer navigation and AI-assisted learning flow.',
   },
   Vivcos: {
-    screenshotFile: 'vivcos-home.png',
+    screenshotFile: 'image7.PNG',
+    liveUrl: 'https://vivcos.com/',
     description: 'Company website created to present services, brand credibility and a maintainable WordPress presence.',
   },
   'Deepak Sharma Portfolio': {
-    screenshotFile: 'deepak-sharma-home.png',
+    screenshotFile: 'image8.PNG',
+    liveUrl: 'https://deepak-sharma-portfolio-2026.web.app/',
     description: 'Custom professional portfolio with strong positioning, SEO foundations and responsive executive presentation.',
   },
   'RKK Masale': {
@@ -658,14 +669,14 @@ function ProjectScreenshot({ project }) {
   if (project.image) {
     return (
       <motion.img
-        src={project.image}
-        alt={`${project.title} homepage screenshot`}
-        className="h-full w-full object-cover"
-        loading="lazy"
-        decoding="async"
-        variants={{ hover: { scale: 1.06 } }}
-        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-      />
+  src={project.image}
+  alt={`${project.title} homepage screenshot`}
+ className="h-full w-full object-cover"
+  loading="lazy"
+  decoding="async"
+  variants={{ hover: { scale: 1.03 } }}
+  transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+/>
     );
   }
 
@@ -696,7 +707,7 @@ function ProjectCard({ project, index, onViewCaseStudy }) {
       whileHover="hover"
       transition={{ duration: 0.65, delay: Math.min(index * 0.04, 0.18), ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="h-[220px] shrink-0 overflow-hidden rounded-t-[1.55rem] bg-mist">
+      <div className="h-[200px] shrink-0 overflow-hidden rounded-t-[1.55rem] bg-mist">
         <ProjectScreenshot project={project} />
       </div>
       <div className="flex flex-1 flex-col p-4">
